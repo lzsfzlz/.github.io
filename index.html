@@ -1,41 +1,310 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的网站</title>
-    <link rel="stylesheet" href="styles.css"> <!-- 链接外部CSS文件 -->
+    <title>智控云联 - PLC控制柜与物联网解决方案</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --secondary: #0284c7;
+            --accent: #0c4a6e;
+            --dark: #0f172a;
+            --light: #f1f5f9;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(2,15,29,0.9) 0%, rgba(12,74,110,0.85) 100%), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3') no-repeat center center/cover;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.25);
+        }
+        
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-icon:hover {
+            transform: scale(1.1);
+            color: var(--primary);
+        }
+        
+        .glowing-border {
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: linear-gradient(var(--dark), var(--dark)) padding-box,
+                        linear-gradient(45deg, var(--primary), var(--secondary)) border-box;
+        }
+        
+        .stats-card {
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.7);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>欢迎来到我的网站</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">首页</a></li>
-                <li><a href="#about">关于</a></li>
-                <li><a href="#contact">联系我们</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section id="home">
-        <h2>首页</h2>
-        <p>欢迎来到我们的网站。这是一个简单的示例，展示如何创建HTML网站。</p>
+<body class="bg-slate-900 text-slate-100">
+    <!-- 导航栏 -->
+    <nav class="fixed w-full z-50 bg-slate-900/90 backdrop-blur-sm py-4 px-6 shadow-lg border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-microchip text-cyan-400 text-2xl"></i>
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">智控云联</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="hover:text-cyan-400 transition-colors">首页</a>
+                <a href="#products" class="hover:text-cyan-400 transition-colors">产品中心</a>
+                <a href="#solutions" class="hover:text-cyan-400 transition-colors">解决方案</a>
+                <a href="#about" class="hover:text-cyan-400 transition-colors">关于我们</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">联系我们</a>
+            </div>
+            
+            <button class="md:hidden text-slate-300">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <section id="home" class="hero-bg min-h-screen flex items-center pt-16 pb-20">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                    工业4.0时代<br>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">智能控制系统</span>
+                </h1>
+                <p class="text-xl text-slate-300 max-w-2xl">
+                    专注PLC控制柜研发制造与物联网集成解决方案，
+                    助力传统制造业转型升级，打造智慧工厂新标杆。
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <button class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-cyan-500/20">
+                        查看产品
+                    </button>
+                    <button class="border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 px-8 py-3 rounded-lg font-medium transition-all">
+                        解决方案
+                    </button>
+                </div>
+            </div>
+            
+            <div class="relative flex justify-center">
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-cyan-500 rounded-full mix-blend-soft-light filter blur-3xl opacity-30 floating"></div>
+                <div class="relative glowing-border p-1 rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" 
+                         alt="现代化PLC控制柜系统展示" 
+                         class="rounded-xl w-full object-cover">
+                </div>
+            </div>
+        </div>
     </section>
-    <section id="about">
-        <h2>关于</h2>
-        <p>这里是一些关于我们的信息。</p>
+
+    <!-- 数据统计 -->
+    <section class="py-16 bg-gradient-to-r from-slate-800 to-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="stats-card p-6 rounded-xl border border-slate-700">
+                    <div class="text-4xl font-bold text-cyan-400 mb-2">500+</div>
+                    <div class="text-slate-300">成功案例</div>
+                </div>
+                <div class="stats-card p-6 rounded-xl border border-slate-700">
+                    <div class="text-4xl font-bold text-cyan-400 mb-2">99.8%</div>
+                    <div class="text-slate-300">系统稳定性</div>
+                </div>
+                <div class="stats-card p-6 rounded-xl border border-slate-700">
+                    <div class="text-4xl font-bold text-cyan-400 mb-2">24/7</div>
+                    <div class="text-slate-300">远程监控</div>
+                </div>
+                <div class="stats-card p-6 rounded-xl border border-slate-700">
+                    <div class="text-4xl font-bold text-cyan-400 mb-2">15年</div>
+                    <div class="text-slate-300">行业经验</div>
+                </div>
+            </div>
+        </div>
     </section>
-    <section id="contact">
-        <h2>联系我们</h2>
-        <p>您可以通过以下方式联系我们：</p>
-        <ul>
-            <li>电子邮件: example@example.com</li>
-            <li>电话: 123-456-7890</li>
-        </ul>
+
+    <!-- 产品中心 -->
+    <section id="products" class="py-20 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">核心产品系列</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    集成先进控制技术与物联网通信协议，提供全方位工业自动化解决方案
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 自动化控制柜 -->
+                <div class="card-hover bg-slate-800/50 p-8 rounded-2xl border border-slate-700 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-6">
+                        <i class="fas fa-industry text-cyan-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">自动化控制柜</h3>
+                    <p class="text-slate-400 mb-6">
+                        高可靠性PLC控制系统，支持多种工业通讯协议，具备故障诊断与预警功能，确保生产线稳定运行。
+                    </p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-cyan-400 mr-2"></i>
+                            <span>西门子/施耐德主流品牌PLC</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-cyan-400 mr-2"></i>
+                            <span>Modbus TCP/IP通讯协议</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-cyan-400 mr-2"></i>
+                            <span>实时状态监测与报警</span>
+                        </li>
+                    </ul>
+                    <button class="text-cyan-400 hover:text-cyan-300 font-medium flex items-center">
+                        了解更多
+                        <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+                
+                <!-- 物联网开发 -->
+                <div class="card-hover bg-slate-800/50 p-8 rounded-2xl border border-slate-700 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6">
+                        <i class="fas fa-network-wired text-purple-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">物联网开发</h3>
+                    <p class="text-slate-400 mb-6">
+                        边缘计算网关+云端平台一体化解决方案，实现设备互联、数据分析与远程运维管理。
+                    </p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-purple-400 mr-2"></i>
+                            <span>MQTT/CoAP低功耗传输协议</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-purple-400 mr-2"></i>
+                            <span>私有化部署边缘服务器</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-purple-400 mr-2"></i>
+                            <span>移动端APP定制开发</span>
+                        </li>
+                    </ul>
+                    <button class="text-purple-400 hover:text-purple-300 font-medium flex items-center">
+                        了解更多
+                        <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+                
+                <!-- 低压电气成套 -->
+                <div class="card-hover bg-slate-800/50 p-8 rounded-2xl border border-slate-700 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-xl bg-green-500/10 flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-green-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">低压电气成套</h3>
+                    <p class="text-slate-400 mb-6">
+                        符合国家标准的高低压配电柜系统，涵盖动力分配、无功补偿及电能质量管理全套方案。
+                    </p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>GCS/GGD标准柜体结构</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>谐波治理与功率因数提升</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <span>SCADA系统集成服务</span>
+                        </li>
+                    </ul>
+                    <button class="text-green-400 hover:text-green-300 font-medium flex items-center">
+                        了解更多
+                        <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </section>
-    <footer>
-        <p>&copy; 2023 我的网站. 版权所有.</p>
-    </footer>
-    <script src="script.js"></script> <!-- 链接外部JavaScript文件 -->
-</body>
-</html>
+
+    <!-- 技术特性 -->
+    <section id="solutions" class="py-20 bg-gradient-to-br from-slate-800 to-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">核心技术优势</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    融合前沿工业技术，为企业数字化转型提供可靠支撑
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center feature-icon">
+                    <div class="mx-auto w-20 h-20 rounded-full bg-cyan-500/10 flex items-center justify-center mb-6">
+                        <i class="fas fa-microchip text-cyan-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">高精度控制</h3>
+                    <p class="text-slate-400">
+                        微秒级响应速度，±0.1%控制精度
+                    </p>
+                </div>
+                
+                <div class="text-center feature-icon">
+                    <div class="mx-auto w-20 h-20 rounded-full bg-purple-500/10 flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-purple-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">安全防护</h3>
+                    <p class="text-slate-400">
+                        IP65防护等级，多重冗余保护机制
+                    </p>
+                </div>
+                
+                <div class="text-center feature-icon">
+                    <div class="mx-auto w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mb-6">
+                        <i class="fas fa-cloud-upload-alt text-green-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">云端协同</h3>
+                    <p class="text-slate-400">
+                        5G/4G全网通连接，毫秒级数据同步
+                    </p>
+                </div>
+                
+                <div class="text-center feature-icon">
+                    <div class="mx-auto w-20 h-20 rounded-full bg-yellow-500/10 flex items-center justify-center mb-6">
+                        <i class="fas fa-sync-alt text-yellow-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">开放接口</h3>
+                    <p class="text-slate-400">
+                        OPC UA/API标准对接各类MES系统
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 应用场景图表 -->
+            <div class="mt-20 grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">应用场景覆盖</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>智能制造</span>
+                                <span>
